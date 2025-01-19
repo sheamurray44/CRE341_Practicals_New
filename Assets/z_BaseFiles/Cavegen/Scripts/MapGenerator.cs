@@ -5,6 +5,7 @@ using System;
 using Unity.AI.Navigation;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
+using UnityEditor.ShaderGraph.Internal;
 
 public class MapGenerator : MonoBehaviour {
 
@@ -436,35 +437,40 @@ public class MapGenerator : MonoBehaviour {
 	// another approach that didn't quite work
 	private void PlacePlayer()
     {
-        // Get the bounds of the ground object
+        Vector3 randomPlayerPos = GetRandomGroundPoint();
+
+		player.transform.position = randomPlayerPos;
+    }
+	
+
+    [SerializeField] private float raycastHeight = 50f; // Height above the plane from which to cast rays.
+    [SerializeField] private int maxAttempts = 1000; // Safety limit to avoid an infinite loop.
+    // Call this method to obtain a random point on an object tagged "Ground".
+    public Vector3 GetRandomGroundPoint()
+    {
         Bounds groundBounds = groundObject.GetComponent<Renderer>().bounds;
-
-        int maxAttempts = 100; // Prevent infinite loops
-        for (int attempt = 0; attempt < maxAttempts; attempt++)
+		
+		for (int i = 0; i < maxAttempts; i++)
         {
-            // Use the seed for the random number generator
-            System.Random prng = new System.Random(seed.GetHashCode() + attempt); // Increment the seed with each attempt
+            // Pick a random position within the specified X-Z range, at a fixed height.
+            float randX = Random.Range(groundBounds.min.x, groundBounds.max.x);
+            float randZ = Random.Range(groundBounds.min.z, groundBounds.max.z);
+            Vector3 origin = new Vector3(randX, raycastHeight, randZ);
 
-            // Generate a random position within the ground's bounds
-            Vector3 randomPosition = new Vector3(
-                Mathf.Lerp(groundBounds.min.x, groundBounds.max.x, (float)prng.NextDouble()),
-                groundBounds.max.y + 20f, // Spawn above the ground to let it fall into place
-                Mathf.Lerp(groundBounds.min.z, groundBounds.max.z, (float)prng.NextDouble())
-            );
-
-            // Raycast to find the exact position on the ground
-            RaycastHit hit;
-            if (Physics.Raycast(randomPosition, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
+            // Cast a ray straight down.
+            if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, Mathf.Infinity))
             {
-                    // Place the player at the hit point
-					Vector3 playerPos = hit.point;
-					playerPos.y += 3f; // Offset the player above the ground
-					player.transform.position = playerPos;
-					return; // Exit the loop after placing the player
+                // Check if the first hit collider is tagged "Ground".
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    return hit.point; 
+                }
             }
         }
 
-        Debug.LogWarning("Could not find a suitable position to place the player after multiple attempts.");
-    }
-	
+        // If no suitable point is found after maxAttempts, return a default.
+        Debug.LogWarning("No valid 'Ground' point found.");
+        return Vector3.zero;
+	}
+
 }

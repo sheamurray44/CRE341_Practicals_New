@@ -62,14 +62,20 @@ public class MeshGenerator : MonoBehaviour {
 
 	void CreateWallMesh() {
 
-		MeshCollider currentCollider = GetComponent<MeshCollider> ();
-		Destroy(currentCollider);
+		// MeshCollider currentCollider = GetComponent<MeshCollider> ();
+		// Destroy(currentCollider);
+
+		MeshCollider[] existingColliders = GetComponents<MeshCollider>();
+    	foreach (MeshCollider collider in existingColliders) {
+        Destroy(collider);
+    }
 
 		CalculateMeshOutlines ();
 
 		List<Vector3> wallVertices = new List<Vector3> ();
 		List<int> wallTriangles = new List<int> ();
 		Mesh wallMesh = new Mesh ();
+		
 		float wallHeight = 5;
 
 		foreach (List<int> outline in outlines) {
@@ -95,6 +101,17 @@ public class MeshGenerator : MonoBehaviour {
 
 		MeshCollider wallCollider = gameObject.AddComponent<MeshCollider> ();
 		wallCollider.sharedMesh = wallMesh;
+
+		    // Create a collider for the top surface of the mesh
+		Mesh topMesh = new Mesh();
+		topMesh.vertices = vertices.ToArray();
+		topMesh.triangles = triangles.ToArray();
+		topMesh.RecalculateNormals();
+
+		cave.mesh = topMesh;
+
+		MeshCollider topCollider = gameObject.AddComponent<MeshCollider>();
+		topCollider.sharedMesh = topMesh;
 	}
 
 	void Generate2DColliders() {

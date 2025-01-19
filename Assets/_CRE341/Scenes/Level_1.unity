@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 509230442}
   - component: {fileID: 509230444}
   - component: {fileID: 509230445}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Map Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +158,8 @@ MonoBehaviour:
   useRandomSeed: 1
   randomFillPercent: 48
   surface: {fileID: 797153120}
+  raycastHeight: 50
+  maxAttempts: 1000
 --- !u!4 &509230443
 Transform:
   m_ObjectHideFlags: 0
