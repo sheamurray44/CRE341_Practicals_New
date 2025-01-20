@@ -10,6 +10,7 @@ using UnityEditor.ShaderGraph.Internal;
 public class MapGenerator : MonoBehaviour {
 
 	public GameObject player; // Reference to your player prefab
+	public GameObject npcPrefab; // Reference to your NPC prefab
 	public GameObject groundObject;
 	public int width;
 	public int height;
@@ -19,6 +20,8 @@ public class MapGenerator : MonoBehaviour {
 
 	[Range(0,100)]
 	public int randomFillPercent;
+
+	public int numberOfNPCs = 5;
 
 	int[,] map;
 
@@ -39,6 +42,8 @@ public class MapGenerator : MonoBehaviour {
 
         // After the NavMesh is generated/baked, place the player
         PlacePlayer();
+
+		SpawnNPCs(numberOfNPCs);
 	}
 
 
@@ -48,6 +53,11 @@ public class MapGenerator : MonoBehaviour {
 			GenerateMap();
 			surface.BuildNavMesh();
 			PlacePlayer();
+
+			// delete existing NPCs and spawn new ones
+			GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+			foreach (GameObject npc in npcs) Destroy(npc);
+			SpawnNPCs(numberOfNPCs);
 		}
 	}
 
@@ -471,6 +481,40 @@ public class MapGenerator : MonoBehaviour {
         // If no suitable point is found after maxAttempts, return a default.
         Debug.LogWarning("No valid 'Ground' point found.");
         return Vector3.zero;
+	}
+	private void SpawnNPCs(int count)
+	{
+		int maxAttempts = 1000;
+		for (int i = 0; i < count; i++)
+		{
+			Vector3 randomNPCPos = Vector3.zero;
+			bool validPositionFound = false;
+			int attempts = 0;
+
+			while (!validPositionFound && attempts < maxAttempts)
+			{
+				randomNPCPos = GetRandomGroundPoint();
+				if (randomNPCPos != Vector3.zero)
+				{
+					NavMeshHit hit;
+					if (NavMesh.SamplePosition(randomNPCPos, out hit, 1.0f, NavMesh.AllAreas))
+					{
+						randomNPCPos = hit.position;
+						validPositionFound = true;
+					}
+				}
+				attempts++;
+			}
+
+			if (validPositionFound)
+			{
+				Instantiate(npcPrefab, randomNPCPos, Quaternion.identity);
+			}
+			else
+			{
+				Debug.LogWarning("Failed to find a valid NavMesh point for NPC.");
+			}
+		}
 	}
 
 }

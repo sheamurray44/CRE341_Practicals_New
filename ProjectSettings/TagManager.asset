@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Ground
   - Walls
+  - NPC
   layers:
   - Default
   - TransparentFX
