@@ -18,7 +18,7 @@ public class MapGenerator : MonoBehaviour {
 	public string seed;
 	public bool useRandomSeed;
 
-	[Range(0,100)]
+	[Range(0,58)]
 	public int randomFillPercent;
 
 	public int numberOfNPCs = 5;
