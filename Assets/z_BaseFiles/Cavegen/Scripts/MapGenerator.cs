@@ -10,7 +10,7 @@ using UnityEditor.ShaderGraph.Internal;
 public class MapGenerator : MonoBehaviour {
 
 	public GameObject player; // Reference to your player prefab
-	public GameObject npcPrefab; // Reference to your NPC prefab
+	public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
 	public GameObject groundObject;
 	public int width;
 	public int height;
@@ -21,12 +21,16 @@ public class MapGenerator : MonoBehaviour {
 	[Range(0,58)]
 	public int randomFillPercent;
 
-	public int numberOfNPCs = 5;
+	[SerializeField] int numberOfNPCs = 5;
+	[SerializeField] List<GameObject> npcs = new List<GameObject>();
+	[SerializeField] int numberWaypoints = 4;
+	[SerializeField] List<GameObject> waypoints = new List<GameObject>();
 
 	int[,] map;
 
-	[SerializeField]
-	public NavMeshSurface surface;
+	[SerializeField] public NavMeshSurface surface;
+	[SerializeField] private float raycastHeight = 50f; // Height above the plane from which to cast rays.
+    [SerializeField] private int maxAttempts = 1000; // Safety limit to avoid an infinite loop.
 
 	void Start() {
 
@@ -43,6 +47,7 @@ public class MapGenerator : MonoBehaviour {
         // After the NavMesh is generated/baked, place the player
         PlacePlayer();
 
+		SpawnWayPoints(numberWaypoints);
 		SpawnNPCs(numberOfNPCs);
 	}
 
@@ -55,8 +60,14 @@ public class MapGenerator : MonoBehaviour {
 			PlacePlayer();
 
 			// delete existing NPCs and spawn new ones
-			GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
-			foreach (GameObject npc in npcs) Destroy(npc);
+			GameObject[] go_npcs = GameObject.FindGameObjectsWithTag("NPC");
+			foreach (GameObject npc in go_npcs) Destroy(npc);
+
+
+			GameObject[] go_wps = GameObject.FindGameObjectsWithTag("Waypoint");
+			foreach (GameObject wp in go_wps) Destroy(wp);
+
+			SpawnWayPoints(numberWaypoints);
 			SpawnNPCs(numberOfNPCs);
 		}
 	}
@@ -452,9 +463,6 @@ public class MapGenerator : MonoBehaviour {
 		player.transform.position = randomPlayerPos;
     }
 	
-
-    [SerializeField] private float raycastHeight = 50f; // Height above the plane from which to cast rays.
-    [SerializeField] private int maxAttempts = 1000; // Safety limit to avoid an infinite loop.
     // Call this method to obtain a random point on an object tagged "Ground".
     public Vector3 GetRandomGroundPoint()
     {
@@ -509,6 +517,8 @@ public class MapGenerator : MonoBehaviour {
 			if (validPositionFound)
 			{
 				Instantiate(npcPrefab, randomNPCPos, Quaternion.identity);
+				// add the NPC to the list
+				npcs.Add(npcPrefab);
 			}
 			else
 			{
@@ -516,5 +526,42 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 	}
+
+    private void SpawnWayPoints(int count)
+	{
+
+        for (int i = 0; i < count; i++)
+		{
+			Vector3 randomNPCPos = Vector3.zero;
+			bool validPositionFound = false;
+			int attempts = 0;
+
+			while (!validPositionFound && attempts < maxAttempts)
+			{
+				randomNPCPos = GetRandomGroundPoint();
+				if (randomNPCPos != Vector3.zero)
+				{
+					NavMeshHit hit;
+					if (NavMesh.SamplePosition(randomNPCPos, out hit, 1.0f, NavMesh.AllAreas))
+					{
+						randomNPCPos = hit.position;
+						validPositionFound = true;
+					}
+				}
+				attempts++;
+			}
+
+			if (validPositionFound)
+			{
+				Instantiate(waypointsPrefab, randomNPCPos, Quaternion.identity);
+				// add the NPC to the list
+				waypoints.Add(waypointsPrefab);
+			}
+			else
+			{
+				Debug.LogWarning("Failed to find a valid NavMesh point for Waypoint.");
+			}
+		}
+    }
 
 }

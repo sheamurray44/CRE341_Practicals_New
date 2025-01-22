@@ -7,9 +7,6 @@ public class MeshGenerator : MonoBehaviour {
 	public SquareGrid squareGrid;
 	public MeshFilter walls;
 	public MeshFilter cave;
-
-	public MeshFilter finalCombinedMesh;
-
 	public bool is2D;
 
 	List<Vector3> vertices;
@@ -433,39 +430,4 @@ public class MeshGenerator : MonoBehaviour {
 
 	}
 
-		void MergeMeshes()
-		{
-			// 1. Get the meshes you want to merge:
-			Mesh mesh1 = walls.mesh;
-			Mesh mesh2 = cave.mesh;
-
-			// 2. Create CombineInstance array:
-			CombineInstance[] combineInstances = new CombineInstance[2];
-
-			// 3. Configure CombineInstance for mesh1:
-			combineInstances[0].mesh = mesh1;
-			combineInstances[0].transform = walls.transform.localToWorldMatrix;
-
-			// 4. Configure CombineInstance for mesh2:
-			combineInstances[1].mesh = mesh2;
-			combineInstances[1].transform = cave.transform.localToWorldMatrix;
-
-			// 5. Create the new combined mesh:
-			Mesh combinedMesh = new Mesh();
-			combinedMesh.CombineMeshes(combineInstances, true, true); // Merge submeshes, use matrices
-
-			// 6. Assign the combined mesh to the target MeshFilter:
-			finalCombinedMesh.mesh = combinedMesh;
-
-			// 7. (Optional) Optimize the mesh:
-			combinedMesh.Optimize();
-
-			// 8. (Optional) Recalculate normals for correct lighting:
-			combinedMesh.RecalculateNormals();
-
-			// 9. (Optional) Assign materials:
-			//    - If you want a single material for the whole mesh:
-			//      targetMeshFilter.GetComponent<MeshRenderer>().material = meshFilter1.GetComponent<MeshRenderer>().material; 
-			//    - If you want to keep the original materials, you'll need a more complex setup. See the "Multiple Materials" section below.
-		}
 }

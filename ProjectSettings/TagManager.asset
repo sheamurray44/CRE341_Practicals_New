@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Walls
   - NPC
+  - Waypoint
   layers:
   - Default
   - TransparentFX
