@@ -454,7 +454,7 @@ public class MapGenerator : MonoBehaviour {
 	
 
     [SerializeField] private float raycastHeight = 50f; // Height above the plane from which to cast rays.
-    [SerializeField] private int maxAttempts = 1000; // Safety limit to avoid an infinite loop.
+	[SerializeField] private int maxAttempts = 100; // Safety limit to avoid an infinite loop.
     // Call this method to obtain a random point on an object tagged "Ground".
     public Vector3 GetRandomGroundPoint()
     {
@@ -484,7 +484,6 @@ public class MapGenerator : MonoBehaviour {
 	}
 	private void SpawnNPCs(int count)
 	{
-		int maxAttempts = 1000;
 		for (int i = 0; i < count; i++)
 		{
 			Vector3 randomNPCPos = Vector3.zero;
