@@ -25,6 +25,8 @@ public class MapGenerator : MonoBehaviour {
 
 	int[,] map;
 
+	public Transform fixedSpawnPoint;
+
 	[SerializeField]
 	public NavMeshSurface surface;
 
@@ -41,7 +43,8 @@ public class MapGenerator : MonoBehaviour {
 		surface.BuildNavMesh();
 
         // After the NavMesh is generated/baked, place the player
-        PlacePlayer();
+        //PlacePlayer();
+		SpawnPlayer();
 
 		SpawnNPCs(numberOfNPCs);
 	}
@@ -52,7 +55,8 @@ public class MapGenerator : MonoBehaviour {
 		if (Input.GetMouseButtonDown(1)) {
 			GenerateMap();
 			surface.BuildNavMesh();
-			PlacePlayer();
+			//PlacePlayer();
+			SpawnPlayer();
 
 			// delete existing NPCs and spawn new ones
 			GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
@@ -443,6 +447,12 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
+	//Alternative method, messing around in class
+	private void SpawnPlayer()
+	{
+		Vector3 fixedSpawnPoint = new Vector3(-17, 13, -68);
+		player.transform.position = fixedSpawnPoint;
+	}
 	
 	// another approach that didn't quite work
 	private void PlacePlayer()
