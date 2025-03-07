@@ -11,6 +11,7 @@ public class MapGenerator : MonoBehaviour {
 
 	public GameObject player; // Reference to your player prefab
 	public GameObject npcPrefab, waypointsPrefab; // Reference to your NPC prefab
+	public GameObject itemPrefab;
 	public GameObject groundObject;
 	public int width;
 	public int height;
@@ -25,6 +26,8 @@ public class MapGenerator : MonoBehaviour {
 	[SerializeField] List<GameObject> npcs = new List<GameObject>();
 	[SerializeField] int numberWaypoints = 4;
 	[SerializeField] List<GameObject> waypoints = new List<GameObject>();
+	[SerializeField] int numberOfItems = 3;
+	[SerializeField] List<GameObject> items = new List<GameObject>();
 
 	int[,] map;
 
@@ -49,6 +52,7 @@ public class MapGenerator : MonoBehaviour {
 
 		SpawnWayPoints(numberWaypoints);
 		SpawnNPCs(numberOfNPCs);
+		SpawnItems(numberOfItems);
 	}
 
 
@@ -69,6 +73,7 @@ public class MapGenerator : MonoBehaviour {
 
 			SpawnWayPoints(numberWaypoints);
 			SpawnNPCs(numberOfNPCs);
+			SpawnItems(numberOfItems);
 		}
 	}
 
@@ -560,6 +565,43 @@ public class MapGenerator : MonoBehaviour {
 			else
 			{
 				Debug.LogWarning("Failed to find a valid NavMesh point for Waypoint.");
+			}
+		}
+    }
+
+	private void SpawnItems(int count)
+	{
+
+        for (int i = 0; i < count; i++)
+		{
+			Vector3 randomNPCPos = Vector3.zero;
+			bool validPositionFound = false;
+			int attempts = 0;
+
+			while (!validPositionFound && attempts < maxAttempts)
+			{
+				randomNPCPos = GetRandomGroundPoint();
+				if (randomNPCPos != Vector3.zero)
+				{
+					NavMeshHit hit;
+					if (NavMesh.SamplePosition(randomNPCPos, out hit, 1.0f, NavMesh.AllAreas))
+					{
+						randomNPCPos = hit.position;
+						validPositionFound = true;
+					}
+				}
+				attempts++;
+			}
+
+			if (validPositionFound)
+			{
+				Instantiate(itemPrefab, randomNPCPos, Quaternion.identity);
+				// add the NPC to the list
+				items.Add(itemPrefab);
+			}
+			else
+			{
+				Debug.LogWarning("Failed to find a valid NavMesh point for Item.");
 			}
 		}
     }
