@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -71,6 +72,8 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+
+		public int collectedItems = 0;
 
 		private const float _threshold = 0.01f;
 
@@ -264,5 +267,15 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
-	}
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Item"))
+			{
+				collectedItems++;
+				Destroy(other.gameObject);
+				Debug.Log("Item collected!");
+			}
+        }
+    }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Walls
   - NPC
   - Waypoint
+  - Flocker
+  - Item
   layers:
   - Default
   - TransparentFX
