@@ -13,3 +13,7 @@ Work with AI State Machines:
 -Initially using a "Chase Player State" that simply used a navmesh to follow the player.
 -Tried to use an abstract state class, implementing the class into a statemanager that would handle swapping states, each state having its own unique logic. Decided not to go forward with it.
 -Implemented the Animator FSM went through in class which yielded much better results.
+
+Items:
+-Added a method that spawned items procedurally along with the map, similar to how waypoints and player/ enemy spawn locations work.
+-Items can be collected and is shown in the UI.
