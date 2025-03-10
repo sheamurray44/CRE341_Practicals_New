@@ -1,7 +1,7 @@
 # GDAD-CRE341-Practicals
 
-Main Menu Scene = 
-Gameplay Scene = 
+Main Menu Scene = Assets/_CRE341/Scenes/MainMenu
+Gameplay Scene = Assets/_CRE341/Scenes/Level_1
 
 Initial work with the Proc Gen map:
 -Struggled to change materials and make it look better, found out it was lighting issues.
