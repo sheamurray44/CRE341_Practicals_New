@@ -1,5 +1,8 @@
 # GDAD-CRE341-Practicals
 
+Main Menu Scene = 
+Gameplay Scene = 
+
 Initial work with the Proc Gen map:
 -Struggled to change materials and make it look better, found out it was lighting issues.
 -Added new textures to look more cave like.
