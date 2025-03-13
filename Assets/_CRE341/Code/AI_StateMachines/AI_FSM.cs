@@ -5,6 +5,8 @@ public class AI_FSM : MonoBehaviour
 {
     // public variables
     public GameObject player;
+
+    public Animator movementAnimator;
     
     // Private Variables
     [SerializeField] private float distanceToPlayer;
@@ -25,12 +27,17 @@ public class AI_FSM : MonoBehaviour
     private const string FSM_Tired = "AI_Tired";
     private const string FSM_AttackInRange = "PlayerInAttackRange";
 
+    private const string DemMove_IsPatrolling = "IsPatrolling";
+    private const string DemMove_IsChasing = "IsChasing";
+    private const string DemMove_IsAttacking = "IsAttacking";
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // set initial player distance to infinity
         distanceToPlayer = Mathf.Infinity;
         fsm_anim = GetComponent<Animator>();
+        movementAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,6 +49,9 @@ public class AI_FSM : MonoBehaviour
             AIState_Patrol.enabled = true; 
             AIState_Chase.enabled = false;
             AIState_Attack.enabled = false;
+            movementAnimator.SetBool(DemMove_IsPatrolling ,true);
+            movementAnimator.SetBool(DemMove_IsChasing ,false);
+            movementAnimator.SetBool(DemMove_IsAttacking ,false);
         }
         else if (fsm_anim.GetCurrentAnimatorStateInfo(0).IsName("Chase")) 
         {
@@ -49,6 +59,10 @@ public class AI_FSM : MonoBehaviour
             AIState_Patrol.enabled = false;
             AIState_Chase.enabled = true; 
             AIState_Attack.enabled = false;
+            movementAnimator.SetBool(DemMove_IsPatrolling ,false);
+            movementAnimator.SetBool(DemMove_IsChasing ,true);
+            movementAnimator.SetBool(DemMove_IsAttacking ,false);
+
         }
         else if (fsm_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) 
         {
@@ -56,6 +70,9 @@ public class AI_FSM : MonoBehaviour
             AIState_Patrol.enabled = false;
             AIState_Chase.enabled = false;
             AIState_Attack.enabled = true;
+            movementAnimator.SetBool(DemMove_IsPatrolling ,false);
+            movementAnimator.SetBool(DemMove_IsChasing ,false);
+            movementAnimator.SetBool(DemMove_IsAttacking ,true);
         }
     }
 
