@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571807527175990118}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 48.218307, y: -3, z: 5.74387}
+  m_LocalRotation: {x: -0, y: 0.0014239665, z: -0, w: 0.99999905}
+  m_LocalPosition: {x: 48.21404, y: -3, z: 5.748013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -92,6 +92,8 @@ MonoBehaviour:
   CinemachineCameraTarget: {fileID: 6567996117599507005}
   TopClamp: 89
   BottomClamp: -89
+  collectedItems: 0
+  playerAnimator: {fileID: 2111433089013064294}
 --- !u!114 &8732551999539102102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 6567996117599507005}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.375, z: 0}
+  m_LocalPosition: {x: 0, y: 1.246, z: -0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,6 +267,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2205635936890155484}
     m_Modifications:
+    - target: {fileID: 2472959991167831899, guid: b6f5548a2cfa50c41a3fa5c6529ff11e, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8408665630352479521, guid: b6f5548a2cfa50c41a3fa5c6529ff11e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -314,6 +320,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f5548a2cfa50c41a3fa5c6529ff11e, type: 3}
+--- !u!95 &2111433089013064294 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2472959991167831899, guid: b6f5548a2cfa50c41a3fa5c6529ff11e, type: 3}
+  m_PrefabInstance: {fileID: 4547766147728993597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5453153131835488284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8408665630352479521, guid: b6f5548a2cfa50c41a3fa5c6529ff11e, type: 3}

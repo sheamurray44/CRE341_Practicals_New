@@ -716,6 +716,11 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!95 &553268245 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2111433089013064294, guid: 2e1a41d7362b3dd45bc95871553172dc, type: 3}
+  m_PrefabInstance: {fileID: 1313956645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &631091595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,6 +2031,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4115610459077151507, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 4a720534fdc89894fb07ba7401140c15, type: 2}
+    - target: {fileID: 5306309163401872806, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5714593509957525375, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
       propertyPath: m_Name
       value: NPC_00
@@ -2074,7 +2087,8 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1559428518}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5306309163401872806, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2189,6 +2203,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1571807527175990113, guid: 2e1a41d7362b3dd45bc95871553172dc, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 553268245}
+    - target: {fileID: 1571807527175990113, guid: 2e1a41d7362b3dd45bc95871553172dc, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -2251,6 +2269,10 @@ PrefabInstance:
     - target: {fileID: 6567996117599507002, guid: 2e1a41d7362b3dd45bc95871553172dc, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210147424547268604, guid: 2e1a41d7362b3dd45bc95871553172dc, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3369,7 +3391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.74387
+      value: 5.35387
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3603,7 +3625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.74387
+      value: 5.35387
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalRotation.w

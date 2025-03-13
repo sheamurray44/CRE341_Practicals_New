@@ -74,6 +74,7 @@ namespace StarterAssets
 		private GameObject _mainCamera;
 
 		public int collectedItems = 0;
+		public Animator playerAnimator;
 
 		private const float _threshold = 0.01f;
 
@@ -100,6 +101,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			playerAnimator = GetComponent<Animator>();
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
