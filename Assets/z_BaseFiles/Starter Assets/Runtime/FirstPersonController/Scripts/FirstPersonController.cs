@@ -117,9 +117,10 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			JumpAndGravity();
+			//JumpAndGravity();
 			GroundedCheck();
 			Move();
+			//AnimatorUpdate();
 		}
 
 		private void LateUpdate()
@@ -197,6 +198,27 @@ namespace StarterAssets
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				playerAnimator.SetBool ("IsIdle", false);
+				playerAnimator.SetBool ("IsWalking", true);
+				playerAnimator.SetBool ("IsRunning", false);
+			}
+			else
+			{
+				playerAnimator.SetBool ("IsWalking", false);
+			}
+
+			if (_speed > 4)
+			{
+				playerAnimator.SetBool ("IsRunning", true);
+				playerAnimator.SetBool ("IsIdle", false);
+				playerAnimator.SetBool ("IsWalking", false);
+			}
+
+			if (_speed == 0)
+			{
+				playerAnimator.SetBool ("IsIdle", true);
+				playerAnimator.SetBool ("IsWalking", false);
+				playerAnimator.SetBool ("IsRunning", false);
 			}
 
 			// move the player
@@ -279,5 +301,26 @@ namespace StarterAssets
 				Debug.Log("Item collected!");
 			}
         }
+
+        // private void AnimatorUpdate()
+		// {
+		// 	if (_input.move != )
+		// 	if (Input.GetKeyDown(KeyCode.Space))
+		// 	{
+		// 		playerAnimator.SetBool("IsJumping", true);
+		// 	}
+		// 	else
+		// 	{
+		// 		playerAnimator.SetBool("IsJumping", false);
+		// 	}
+		// 	if (Input.GetKeyDown(KeyCode.LeftShift))
+		// 	{
+		// 		playerAnimator.SetBool("IsRunning", true);
+		// 	}
+		// 	else
+		// 	{
+		// 		playerAnimator.SetBool("IsRunning", false);
+		// 	}
+		// }
     }
 }
