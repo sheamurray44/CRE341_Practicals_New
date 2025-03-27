@@ -22,9 +22,9 @@ public class MapGenerator : MonoBehaviour {
 	[Range(0,58)]
 	public int randomFillPercent;
 
-	[SerializeField] int numberOfNPCs = 5;
+	[SerializeField] int numberOfNPCs = 1;
 	[SerializeField] List<GameObject> npcs = new List<GameObject>();
-	[SerializeField] int numberWaypoints = 4;
+	[SerializeField] int numberWaypoints = 5;
 	[SerializeField] List<GameObject> waypoints = new List<GameObject>();
 	[SerializeField] int numberOfItems = 3;
 	[SerializeField] List<GameObject> items = new List<GameObject>();

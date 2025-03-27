@@ -102,7 +102,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5714593509957525375}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 4a720534fdc89894fb07ba7401140c15, type: 2}
   m_Controller: {fileID: 9100000, guid: 2124d66457337c944819fbf6272548e5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005a2f42c752ea045b3487a6069cfa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1571807527175990118, guid: 2e1a41d7362b3dd45bc95871553172dc, type: 3}
+  player: {fileID: 0}
   distanceToPlayer: 0
   playerVisible: 1
   chaseDistance: 25

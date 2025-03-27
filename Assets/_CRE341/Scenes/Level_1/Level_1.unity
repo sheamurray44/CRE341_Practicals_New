@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1559428518}
-  npcPrefab: {fileID: 850744601649192515, guid: 501d9bf57c999b445bbb55ac3c54f2b6, type: 3}
+  npcPrefab: {fileID: 5714593509957525375, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
   waypointsPrefab: {fileID: 8560873365045129249, guid: 60359ab39d3ed3f42ab598c7b21b9ebd, type: 3}
   itemPrefab: {fileID: 1411512464560164, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
   groundObject: {fileID: 631091595}
@@ -2039,7 +2039,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5714593509957525375, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
       propertyPath: m_Name
-      value: NPC_00
+      value: NPC_00(Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714593509957525375, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6320780924383012744, guid: e0db805b2f7f2c243a578c070ebac4c1, type: 3}
       propertyPath: m_LocalPosition.x

@@ -27,6 +27,13 @@ public class Timer : MonoBehaviour
         {
             timer -= Time.deltaTime;
             gameOverUI.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
