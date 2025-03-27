@@ -45,9 +45,6 @@ public class AI_FSM : MonoBehaviour
             AIState_Patrol.enabled = true; 
             AIState_Chase.enabled = false;
             AIState_Attack.enabled = false;
-            // movementAnimator.SetBool("IsPatrolling" ,true);
-            // movementAnimator.SetBool("IsChasing" ,false);
-            // movementAnimator.SetBool("IsAttacking" ,false);
         }
         else if (fsm_anim.GetCurrentAnimatorStateInfo(0).IsName("Chase")) 
         {
@@ -55,10 +52,6 @@ public class AI_FSM : MonoBehaviour
             AIState_Patrol.enabled = false;
             AIState_Chase.enabled = true; 
             AIState_Attack.enabled = false;
-            // movementAnimator.SetBool("IsPatrolling" ,false);
-            // movementAnimator.SetBool("IsChasing" ,true);
-            // movementAnimator.SetBool("IsAttacking" ,false);
-
         }
         else if (fsm_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) 
         {
@@ -66,9 +59,8 @@ public class AI_FSM : MonoBehaviour
             AIState_Patrol.enabled = false;
             AIState_Chase.enabled = false;
             AIState_Attack.enabled = true;
-            // movementAnimator.SetBool("IsPatrolling" ,false);
-            // movementAnimator.SetBool("IsChasing" ,false);
-            // movementAnimator.SetBool("IsAttacking" ,true);
+            Destroy(player);
+            Debug.Log("Thyra Dead");
         }
     }
 

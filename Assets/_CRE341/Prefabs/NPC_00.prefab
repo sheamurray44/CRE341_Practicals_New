@@ -128,11 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1571807527175990118, guid: 2e1a41d7362b3dd45bc95871553172dc, type: 3}
-  movementAnimator: {fileID: 0}
   distanceToPlayer: 0
   playerVisible: 1
-  chaseDistance: 20
-  attackDistance: 5
+  chaseDistance: 25
+  attackDistance: 3
   chaseHysterisis: 2
   attackHysterisis: 0.5
   AIState_Patrol: {fileID: 8117519036938012695}

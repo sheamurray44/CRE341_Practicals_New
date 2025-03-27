@@ -3,6 +3,8 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+    public GameObject player;
+    public GameObject gameOverUI;
     public TextMeshProUGUI timerText;
     public bool playing;
     private float timer;
@@ -18,7 +20,13 @@ public class Timer : MonoBehaviour
             timer += Time.deltaTime;
             int minutes = Mathf.FloorToInt(timer / 60f);
             int seconds = Mathf.FloorToInt(timer % 60f);
-            timerText.text = "Timer: " + minutes.ToString ("00") + ":" + seconds.ToString ("00");
+            timerText.text = minutes.ToString ("00") + ":" + seconds.ToString ("00");
+        }
+
+        if(player == null)
+        {
+            timer -= Time.deltaTime;
+            gameOverUI.SetActive(true);
         }
     }
 }
