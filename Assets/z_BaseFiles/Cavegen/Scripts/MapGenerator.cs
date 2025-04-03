@@ -58,23 +58,26 @@ public class MapGenerator : MonoBehaviour {
 
 
     void Update() {
-		if (Input.GetMouseButtonDown(1)) {
-			GenerateMap();
-			surface.BuildNavMesh();
-			PlacePlayer();
+		// if (Input.GetMouseButtonDown(1)) 
+		// {
+		// 	GenerateMap();
+		// 	surface.BuildNavMesh();
+		// 	PlacePlayer();
 
-			// delete existing NPCs and spawn new ones
-			GameObject[] go_npcs = GameObject.FindGameObjectsWithTag("NPC");
-			foreach (GameObject npc in go_npcs) Destroy(npc);
+		// 	// delete existing NPCs and spawn new ones
+		// 	GameObject[] go_npcs = GameObject.FindGameObjectsWithTag("NPC");
+		// 	foreach (GameObject npc in go_npcs) Destroy(npc);
 
+		// 	GameObject[] go_wps = GameObject.FindGameObjectsWithTag("Waypoint");
+		// 	foreach (GameObject wp in go_wps) Destroy(wp);
+			
+		// 	GameObject[] go_items = GameObject.FindGameObjectsWithTag("Item");
+		// 	foreach (GameObject item in go_items) Destroy(item);
 
-			GameObject[] go_wps = GameObject.FindGameObjectsWithTag("Waypoint");
-			foreach (GameObject wp in go_wps) Destroy(wp);
-
-			SpawnWayPoints(numberWaypoints);
-			SpawnNPCs(numberOfNPCs);
-			SpawnItems(numberOfItems);
-		}
+		// 	SpawnWayPoints(numberWaypoints);
+		// 	SpawnNPCs(numberOfNPCs);
+		// 	SpawnItems(numberOfItems);
+		// }
 	}
 
 	void GenerateMap() {
