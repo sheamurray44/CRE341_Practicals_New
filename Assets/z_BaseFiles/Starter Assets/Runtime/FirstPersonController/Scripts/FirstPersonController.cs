@@ -120,6 +120,7 @@ namespace StarterAssets
 			//JumpAndGravity();
 			GroundedCheck();
 			Move();
+			GameWin();
 			//AnimatorUpdate();
 		}
 
@@ -301,6 +302,14 @@ namespace StarterAssets
 				Debug.Log("Item collected!");
 			}
         }
+
+		private void GameWin()
+		{
+			if (collectedItems >= 3)
+			{
+				Debug.Log("Demon dead, Thyra WINS!");
+			}
+		}
 
         // private void AnimatorUpdate()
 		// {

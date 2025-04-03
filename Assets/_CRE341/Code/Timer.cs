@@ -32,7 +32,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            Cursor.visible = true;
+            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
