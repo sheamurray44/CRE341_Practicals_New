@@ -8,10 +8,6 @@ public class PauseGame : MonoBehaviour
     public GameObject pausedUI;
     private bool isPaused = false;
 
-    void Awake()
-    {
-        
-    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

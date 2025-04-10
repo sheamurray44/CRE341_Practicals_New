@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
     public GameObject gameOverUI;
     public TextMeshProUGUI timerText;
     public bool playing;
-    private float timer;
+    private static float timer;
 
     private void Awake()
     {
