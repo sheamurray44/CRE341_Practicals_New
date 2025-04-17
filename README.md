@@ -1,5 +1,8 @@
 # GDAD-CRE341-Practicals
 
+BUG-
+IF THE PLAYER SPAWNS ON THE ROOF PLEASE ALT F4 AND RELOAD THE GAME.
+
 Main Menu Scene = Assets/_CRE341/Scenes/MainMenu
 Gameplay Scene = Assets/_CRE341/Scenes/Level_1
 
