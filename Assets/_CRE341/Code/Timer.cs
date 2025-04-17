@@ -36,4 +36,12 @@ public class Timer : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+
+    public void ResetTimer()
+    {
+        timer = 0f;
+        int minutes = Mathf.FloorToInt(timer / 60f);
+        int seconds = Mathf.FloorToInt(timer % 60f);
+        timerText.text = minutes.ToString ("00") + ":" + seconds.ToString ("00");
+    }
 }

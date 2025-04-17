@@ -74,6 +74,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		//public GameObject timerObj;
 
 		public int collectedItems = 0;
 		public Animator playerAnimator;
@@ -204,6 +205,7 @@ namespace StarterAssets
 				playerAnimator.SetBool ("IsIdle", false);
 				playerAnimator.SetBool ("IsWalking", true);
 				playerAnimator.SetBool ("IsRunning", false);
+				//GetComponent<AudioSource>().enabled = true;
 			}
 			else
 			{
@@ -215,6 +217,7 @@ namespace StarterAssets
 				playerAnimator.SetBool ("IsRunning", true);
 				playerAnimator.SetBool ("IsIdle", false);
 				playerAnimator.SetBool ("IsWalking", false);
+				//GetComponent<AudioSource>().enabled = true;
 			}
 
 			if (_speed == 0)
@@ -222,6 +225,7 @@ namespace StarterAssets
 				playerAnimator.SetBool ("IsIdle", true);
 				playerAnimator.SetBool ("IsWalking", false);
 				playerAnimator.SetBool ("IsRunning", false);
+				//GetComponent<AudioSource>().enabled = false;
 			}
 
 			// move the player
@@ -311,6 +315,7 @@ namespace StarterAssets
 			{
 				Debug.Log("Demon dead, Thyra WINS!");
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+				//timerObj.isStatic = true;
 			}
 		}
 
